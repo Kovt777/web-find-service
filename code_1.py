@@ -580,7 +580,7 @@ def chat():
     Отвечай кратко (5-6 предложения), по делу. Если вопрос не о кладах — откажись отвечать.
 
     Пример хорошего ответа:
-    "В Ищи Барский дом на возвышенности, прошурфи углы дома: проверяй возле больших ям: скорее всего там были Бани: походи вдоль Оврагов."
+    "Ищи Барский дом на возвышенности, прошурфи углы дома: проверяй возле больших ям: скорее всего там были Бани: походи вдоль Оврагов."
     """
 
     headers = {
@@ -600,7 +600,7 @@ def chat():
                 "https://openrouter.ai/api/v1/chat/completions",
                 headers=headers,
                 json=data,
-                timeout=20
+                timeout=30
             )
             response.raise_for_status()
             result = response.json()
@@ -608,7 +608,7 @@ def chat():
             return jsonify({"response": response_text})
     except Exception as e:
         print(f"Chat error: {e}")
-        return jsonify({"response": "Чёрт, связь барахлит... Попробуй позже."})
+        return jsonify({"response": "Чёрт- побери, связь барахлит... Попробуй позже."})
 
 if __name__ == '__main__':
     app.run(debug=True)
