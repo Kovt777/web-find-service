@@ -21,7 +21,7 @@ def search_locations(query):
     geolocator = Nominatim(
         user_agent="map_application",
         ssl_context=ssl_context,
-        timeout=10
+        timeout=20
     )
     try:
         locations = geolocator.geocode(query, country_codes='RU', exactly_one=False)
@@ -52,7 +52,7 @@ def get_weather(lat, lon):
     """Получаем текущую температуру в пиратском стиле"""
     try:
         url = f"https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}&current_weather=true"
-        response = requests.get(url, timeout=10)
+        response = requests.get(url, timeout=20)
         data = response.json()
 
         temp = data.get('current_weather', {}).get('temperature')
@@ -94,7 +94,7 @@ def parse_clad_sites(location_name):
 
     for url, selector in sites:
         try:
-            response = requests.get(url, timeout=10)
+            response = requests.get(url, timeout=20)
             soup = BeautifulSoup(response.text, 'html.parser')
             posts = soup.select(selector)
 
